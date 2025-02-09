@@ -18,7 +18,7 @@ function Login() {
       console.log(response);
       const accessToken = (await response).data.data.accessToken;
       localStorage.setItem("accessToken", accessToken);
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
