@@ -8,6 +8,7 @@ function Dashboard() {
   const [videoList, setVideoList] = useState([]);
   const [user, setUser] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const navigate = useNavigate();
 
   const fetchVideoList = async () => {
     const token = localStorage.getItem("accessToken");
@@ -51,7 +52,6 @@ function Dashboard() {
     localStorage.removeItem("accessToken");
     navigate("/login");
   };
-
   return (
     <>
       <div>Header</div>
@@ -73,6 +73,7 @@ function Dashboard() {
           <div className="dashboard__videolist">
             <VideoList videos={videoList} />
           </div>
+          <button onClick={logout}>Logout</button>
         </div>
       </div>
     </>

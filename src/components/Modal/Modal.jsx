@@ -26,7 +26,9 @@ function Modal({ closeModal, fetchVideos }) {
     <>
       <div className="modal__background">
         <div className="modal__container">
-          <button className="modal__exit" onClick={() => closeModal()}></button>
+          <button className="modal__exit" onClick={() => closeModal()}>
+            X
+          </button>
           <div className="modal__title">
             <h1>Add new workout</h1>
           </div>
