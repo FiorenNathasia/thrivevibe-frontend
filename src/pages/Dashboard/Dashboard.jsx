@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import VideoList from "../../components/VideoList/VideoList";
+import Modal from "../../components/Modal/Modal";
 
 function Dashboard() {
   const [videoList, setVideoList] = useState([]);
   const [user, setUser] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
 
   const fetchVideoList = async () => {
     const token = localStorage.getItem("accessToken");
@@ -56,7 +58,18 @@ function Dashboard() {
       <div className="dashboard">
         <div className="dashboard__container">
           <p>Welcome back {user?.firstName}</p>
-          <div>Video Modal</div>
+          <button
+            className="dashboard__modal"
+            onClick={() => setOpenModal(true)}
+          >
+            OPEN
+          </button>
+          {openModal && (
+            <Modal
+              closeModal={() => setOpenModal(false)}
+              fetchVideos={fetchVideoList}
+            />
+          )}
           <div className="dashboard__videolist">
             <VideoList videos={videoList} />
           </div>

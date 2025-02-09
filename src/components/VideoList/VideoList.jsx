@@ -1,4 +1,4 @@
-import VideoCard from "../VideoCard/VideoCard";
+import UserVideoCard from "../UserVideoCard/UserVideoCard";
 
 function VideoList({ videos }) {
   return (
@@ -7,7 +7,11 @@ function VideoList({ videos }) {
         <div className="workoulist__container">
           {videos.map((video) => (
             <ul key={video.id}>
-              <VideoCard id={video.id} url={video.url} prompt={video.prompt} />
+              <UserVideoCard
+                id={video.id}
+                url={video.url}
+                prompt={video.prompt}
+              />
             </ul>
           ))}
         </div>

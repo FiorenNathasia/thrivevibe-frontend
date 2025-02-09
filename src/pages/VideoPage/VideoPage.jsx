@@ -1,7 +1,7 @@
 function VideoPage() {
   return (
     <>
-      <div className="videopage"></div>
+      <div className="videopage">hello</div>
     </>
   );
 }
