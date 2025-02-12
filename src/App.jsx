@@ -5,6 +5,7 @@ import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import VideoPage from "./pages/VideoPage/VideoPage";
+import Feed from "./pages/Feed/Feed";
 
 function App() {
   return (
@@ -26,6 +27,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <VideoPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/feed"
+            element={
+              <ProtectedRoute>
+                <Feed />
               </ProtectedRoute>
             }
           />
