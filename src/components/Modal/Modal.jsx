@@ -15,7 +15,7 @@ function Modal({ closeModal, fetchVideos }) {
     try {
       await axios.post("http://localhost:8181/api/videos/newvideo", newVideo, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: "Bearer " + token,
         },
       });
       closeModal();

@@ -36,16 +36,6 @@ function SwipeCard() {
     console.log("removing: " + videoId);
     lastDirectionRef.current = direction;
     setSwipeDirection(direction);
-
-    //     if (direction === "right") {
-    //       setIsAnimating("check");
-    //     } else if (direction === "left") {
-    //       setIsAnimating("cross");
-    //     }
-
-    //     setTimeout(() => {
-    //       setIsAnimating(false);
-    //     }, 1500);
   };
 
   const outOfFrame = async (videoId) => {
