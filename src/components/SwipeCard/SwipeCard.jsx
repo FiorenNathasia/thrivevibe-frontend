@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from "react";
 function SwipeCard() {
   const [videoList, setVideoList] = useState(null);
   const [swipeDirection, setSwipeDirection] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const lastDirectionRef = useRef();
 
   const fetchFeedList = async () => {
@@ -25,12 +26,16 @@ function SwipeCard() {
 
   const fetchPageData = async () => {
     await fetchFeedList();
-    // setIsLoading(false);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     fetchPageData();
   }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   const swiped = (direction, videoId) => {
     console.log("removing: " + videoId);
