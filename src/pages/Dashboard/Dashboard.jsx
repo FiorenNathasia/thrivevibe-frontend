@@ -8,6 +8,7 @@ function Dashboard() {
   const [videoList, setVideoList] = useState([]);
   const [user, setUser] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const fetchVideoList = async () => {
@@ -41,7 +42,7 @@ function Dashboard() {
   const fetchPageData = async () => {
     await fetchVideoList();
     await fetchUser();
-    // setIsLoading(false);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -56,6 +57,10 @@ function Dashboard() {
   const feed = () => {
     navigate("/feed");
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <div>Header</div>

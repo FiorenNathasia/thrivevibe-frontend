@@ -5,8 +5,10 @@ import axios from "axios";
 function Modal({ closeModal, fetchVideos }) {
   const [url, setUrl] = useState("");
   const [prompt, setPrompt] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async () => {
+    setIsSubmitting(true);
     const token = localStorage.getItem("accessToken");
     const newVideo = {
       url,
@@ -21,6 +23,7 @@ function Modal({ closeModal, fetchVideos }) {
       closeModal();
       fetchVideos();
     } catch (error) {}
+    setIsSubmitting(false);
   };
   return (
     <>
@@ -30,7 +33,7 @@ function Modal({ closeModal, fetchVideos }) {
             X
           </button>
           <div className="modal__title">
-            <h1>Add new workout</h1>
+            <h1>Add new video</h1>
           </div>
           <div className="modal__body">
             <input
@@ -49,10 +52,16 @@ function Modal({ closeModal, fetchVideos }) {
             ></input>
           </div>
           <div className="modal__footer">
-            <button className="modal__submits" onClick={handleSubmit}>
-              Submit
+            <button
+              className="modal__submits"
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : "Submit"}
             </button>
-            <button onClick={() => closeModal()}>Cancel</button>
+            <button onClick={() => closeModal()} disabled={isSubmitting}>
+              Cancel
+            </button>
           </div>
         </div>
       </div>
