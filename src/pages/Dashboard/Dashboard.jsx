@@ -52,6 +52,10 @@ function Dashboard() {
     localStorage.removeItem("accessToken");
     navigate("/login");
   };
+
+  const feed = () => {
+    navigate("/feed");
+  };
   return (
     <>
       <div>Header</div>
@@ -74,6 +78,7 @@ function Dashboard() {
             <VideoList videos={videoList} />
           </div>
           <button onClick={logout}>Logout</button>
+          <button onClick={feed}>Feed</button>
         </div>
       </div>
     </>
