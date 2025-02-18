@@ -1,6 +1,6 @@
 import UserVideoCard from "../UserVideoCard/UserVideoCard";
 
-function VideoList({ videos }) {
+function VideoList({ videos, fetchVideos }) {
   return (
     <>
       <div className="workoutlist">
@@ -11,6 +11,7 @@ function VideoList({ videos }) {
                 id={video.id}
                 url={video.url}
                 prompt={video.prompt}
+                fetchVideos={fetchVideos}
               />
             </ul>
           ))}

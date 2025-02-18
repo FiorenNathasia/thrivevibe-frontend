@@ -80,7 +80,7 @@ function Dashboard() {
             />
           )}
           <div className="dashboard__videolist">
-            <VideoList videos={videoList} />
+            <VideoList videos={videoList} fetchVideos={fetchVideoList} />
           </div>
           <button onClick={logout}>Logout</button>
           <button onClick={feed}>Feed</button>
