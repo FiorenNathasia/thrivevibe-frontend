@@ -18,7 +18,7 @@ function UserVideoCard({ id, url, prompt, fetchVideos }) {
           },
         }
       );
-      fetchVideos();
+      await fetchVideos();
     } catch (error) {
       console.log(error);
     }
