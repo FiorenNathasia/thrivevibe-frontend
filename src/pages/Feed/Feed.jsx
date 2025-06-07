@@ -138,6 +138,9 @@ function Feed() {
             display: "flex",
           }}
         >
+          <Box position="absolute" mt={15}>
+            <Typography>No more videos! Check back later</Typography>
+          </Box>
           {videoList.map((video, index) => (
             <TinderCard
               className="swipe"
