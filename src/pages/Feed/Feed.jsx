@@ -22,7 +22,7 @@ export default function Feed() {
     const token = localStorage.getItem("accessToken");
     try {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}//api/feed`,
+        `${import.meta.env.VITE_API_URL}/api/feed`,
         {
           headers: {
             Authorization: "Bearer " + token,
