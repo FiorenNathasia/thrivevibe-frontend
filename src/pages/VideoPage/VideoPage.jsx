@@ -72,6 +72,8 @@ function VideoPage() {
           display="flex"
           flexDirection="row"
           width={isMobile ? "100%" : null}
+          marginBottom={2}
+          marginTop={isMobile ? 2 : null}
         >
           {!isMobile && (
             <Box
@@ -80,7 +82,9 @@ function VideoPage() {
                 width: 320,
                 display: "flex",
                 justifyContent: "center",
-                border: 1,
+                boxShadow: 3,
+                borderRadius: 3,
+                marginRight: 2,
               }}
             >
               <ReactPlayer url={video.url} width={250} height={360} controls />
@@ -95,8 +99,10 @@ function VideoPage() {
             <Box
               sx={{
                 padding: 2,
-                border: 1,
+                boxShadow: 2,
                 width: "100%",
+                borderRadius: 3,
+                marginBottom: 2,
               }}
             >
               <Typography variant="h5">{video.prompt}</Typography>
@@ -105,8 +111,9 @@ function VideoPage() {
             <Box
               sx={{
                 padding: 2,
-                border: 1,
+                boxShadow: 2,
                 flexGrow: 1,
+                borderRadius: 3,
               }}
             >
               <VideoVotes upvote={video.upvote} downvote={video.downvote} />
@@ -114,7 +121,12 @@ function VideoPage() {
           </Box>
         </Box>
 
-        <Box border={1} padding={2} width={{ sm: 680, xs: "100%" }}>
+        <Box
+          boxShadow={2}
+          padding={2}
+          width={{ sm: 700, xs: "100%" }}
+          borderRadius={3}
+        >
           <VideoComments comments={comments} />
         </Box>
       </Container>
