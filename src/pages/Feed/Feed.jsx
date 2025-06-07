@@ -11,7 +11,7 @@ import Header from "../../components/Header/Header";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import AddCommentPopover from "../../components/AddCommentPopover/AddCommentPopover";
 
-export default function Feed() {
+function Feed() {
   const [videoList, setVideoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -209,3 +209,5 @@ export default function Feed() {
     </>
   );
 }
+
+export default Feed;

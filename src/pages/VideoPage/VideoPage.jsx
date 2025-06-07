@@ -3,20 +3,16 @@ import {
   Box,
   Container,
   Typography,
-  List,
-  ListItem,
-  ListItemText,
-  Divider,
   useTheme,
   useMediaQuery,
   LinearProgress,
 } from "@mui/material";
-import { PieChart, Pie, Cell, Legend, Tooltip } from "recharts";
 import Header from "../../components/Header/Header";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import dayjs from "dayjs";
+import VideoVotes from "../../components/VideoVotes/VideoVotes";
+import VideoComments from "../../components/VideoComments/VideoComments";
 
 function VideoPage() {
   const theme = useTheme();
@@ -58,8 +54,6 @@ function VideoPage() {
   }, []);
 
   if (isLoading) return <LinearProgress />;
-
-  const totalVotes = video.upvote + video.downvote;
 
   return (
     <>
@@ -115,76 +109,13 @@ function VideoPage() {
                 flexGrow: 1,
               }}
             >
-              <Typography variant="h5">Votes</Typography>
-
-              <Typography>
-                {totalVotes ? `Total votes: ${totalVotes}` : "No votes"}
-              </Typography>
-              {totalVotes > 0 && (
-                <Box bgcolor="blue" display="flex" justifyContent="center">
-                  <PieChart width={280} height={190}>
-                    <Pie
-                      data={[
-                        { name: "Upvotes", value: video.upvote },
-                        { name: "Downvotes", value: video.downvote },
-                      ]}
-                      dataKey="value"
-                      nameKey="name"
-                      innerRadius={60}
-                      outerRadius={80}
-                    >
-                      <Cell fill="#82ca9d" />
-                      <Cell fill="#8dd1e1" />
-                    </Pie>
-                    <Tooltip />
-                    <Legend
-                      layout="vertical"
-                      align="left"
-                      verticalAlign="middle"
-                      height={36}
-                    />
-                  </PieChart>
-                </Box>
-              )}
+              <VideoVotes upvote={video.upvote} downvote={video.downvote} />
             </Box>
           </Box>
         </Box>
 
         <Box border={1} padding={2} width={{ sm: 680, xs: "100%" }}>
-          <Typography variant="h5">Comments</Typography>
-          {comments.length ? (
-            <List>
-              {comments.map((comment, index) => (
-                <React.Fragment key={comment.id}>
-                  <ListItem alignItems="flex-start">
-                    <ListItemText
-                      primary={
-                        <Typography variant="body1">
-                          {comment.comments}
-                        </Typography>
-                      }
-                      secondary={
-                        <Typography
-                          variant="caption"
-                          color="text.secondary"
-                          component="span"
-                        >
-                          {`${comment.first_name} ${
-                            comment.last_name
-                          } • ${dayjs(comment.created_at).format(
-                            "h:mm A • DD MMM YY"
-                          )}`}
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  {index < comments.length - 1 && <Divider component="li" />}
-                </React.Fragment>
-              ))}
-            </List>
-          ) : (
-            <Typography>No Comments</Typography>
-          )}
+          <VideoComments comments={comments} />
         </Box>
       </Container>
     </>
