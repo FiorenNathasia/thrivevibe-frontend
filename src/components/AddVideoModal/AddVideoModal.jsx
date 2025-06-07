@@ -17,28 +17,25 @@ function AddVideoModal({ onClose, open, onSubmit }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
-  const clearInputs = () => {
-    setError(null);
-    setUrl("");
-    setPrompt("");
-  };
-
   const handleSubmitVideo = async () => {
     setIsSubmitting(true);
     try {
       await onSubmit(url, prompt);
+      handleClose();
     } catch (error) {
       const errorMessage =
         error.response?.data?.message || "Something went wrong";
       setError(errorMessage);
     }
     setIsSubmitting(false);
-    clearInputs();
   };
 
   const handleClose = () => {
     onClose();
-    clearInputs();
+    setError(null);
+    setUrl("");
+    setPrompt("");
+    setIsSubmitting(false);
   };
 
   return (
@@ -52,6 +49,7 @@ function AddVideoModal({ onClose, open, onSubmit }) {
           maxWidth: 400,
           width: { xs: "100%" },
           backgroundColor: "background.default",
+          padding: 2,
         }}
       >
         <Box display="flex" flexDirection="row" justifyContent="space-between">
@@ -60,6 +58,7 @@ function AddVideoModal({ onClose, open, onSubmit }) {
             <CloseIcon />
           </IconButton>
         </Box>
+
         {error && (
           <Alert
             severity="error"
@@ -72,6 +71,7 @@ function AddVideoModal({ onClose, open, onSubmit }) {
             {error}
           </Alert>
         )}
+
         <TextField
           fullWidth
           label="Video URL"
