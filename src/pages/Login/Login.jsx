@@ -1,64 +1,145 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 import axios from "axios";
-import "./Login.scss";
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  Container,
+  Alert,
+  Link,
+  LinearProgress,
+  Card,
+  CardContent,
+} from "@mui/material";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async () => {
-    const user = {
-      email,
-      password,
-    };
     try {
-      const response = axios.post("http://localhost:8181/api/auth/login", user);
-      console.log(response);
-      const accessToken = (await response).data.data.accessToken;
+      setIsLoading(true);
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
+      const accessToken = response.data.data.accessToken;
       localStorage.setItem("accessToken", accessToken);
       navigate("/");
     } catch (error) {
-      console.log(error);
+      const errorMessage =
+        error.response?.data?.message || "Something went wrong";
+      setError(errorMessage);
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const signup = () => {
-    navigate("/signup");
+  const handleSetDemoAccount = () => {
+    setEmail("demo@email.com");
+    setPassword("password");
   };
+
   return (
     <>
-      <div className="login">
-        <div className="login__container">
-          <div className="login__header">
-            <p className="login__text">Login</p>
-            <div className="login__underline"></div>
-          </div>
-          <div className="login__inputs">
-            <div className="login__input">
-              <input
-                type="email"
-                value={email}
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="login__input">
-              <input
-                type="password"
-                value={password}
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="login_submit-container">
-            <button onClick={handleSubmit}>Submit</button>
-            <button onClick={signup}>Signup</button>
-          </div>
-        </div>
-      </div>
+      {isLoading && <LinearProgress />}
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-start",
+          height: "100vh",
+          pt: {
+            xs: 6,
+            sm: "25vh",
+          },
+        }}
+      >
+        <Card
+          sx={{
+            px: 4,
+            py: 3,
+            maxWidth: 400,
+            width: "100%",
+            boxShadow: 3,
+          }}
+        >
+          <CardContent>
+            <Box textAlign="center" mb={2}>
+              <Typography variant="h4">ThriveVibe</Typography>
+              <Typography variant="subtitle1">
+                Unleash Your Potential
+              </Typography>
+            </Box>
+
+            <Alert sx={{ mb: 2 }}>
+              <Typography color="black">
+                Here to demo the app?{" "}
+                <Link
+                  onClick={handleSetDemoAccount}
+                  sx={{ cursor: "pointer", color: "#0da82d" }}
+                >
+                  Use this account
+                </Link>
+              </Typography>
+            </Alert>
+
+            {error && (
+              <Alert severity="error" sx={{ mb: 2 }}>
+                {error}
+              </Alert>
+            )}
+
+            <TextField
+              fullWidth
+              label="Email Address"
+              variant="outlined"
+              margin="normal"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+            />
+
+            <TextField
+              fullWidth
+              label="Password"
+              variant="outlined"
+              margin="normal"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+            />
+
+            <Button
+              fullWidth
+              type="submit"
+              variant="contained"
+              onClick={handleSubmit}
+              disabled={!email || !password}
+              sx={{ mt: 2, mb: 1 }}
+            >
+              Log In
+            </Button>
+
+            <Typography variant="body2" align="center">
+              Don’t have an account?{" "}
+              <Link component={RouterLink} to="/signup">
+                Sign Up
+              </Link>
+            </Typography>
+          </CardContent>
+        </Card>
+      </Container>
     </>
   );
 }

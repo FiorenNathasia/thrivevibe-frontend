@@ -1,35 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "./ProtectedRoute.scss";
+import { useEffect } from "react";
+import { useNavigate, Outlet } from "react-router-dom";
+import { Typography, Box } from "@mui/material";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = () => {
   const token = localStorage.getItem("accessToken");
-  const [redirect, setRedirect] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!token) {
       setTimeout(() => {
-        setRedirect(true);
-      }, 3000);
+        navigate("/login");
+      }, 2000);
     }
   }, [token]);
 
-  if (!token && !redirect) {
+  if (!token) {
     return (
-      <div className="protectedroute__position">
-        <p className="protectedroute__message">
-          You are not authorised! <br />
-          <span>You will be taken to login page...</span>
-        </p>
-      </div>
+      <Box>
+        <Typography variant="h5"> You are not authorised!</Typography>
+        <Typography>You will be taken to login page...</Typography>
+      </Box>
     );
   }
-  if (redirect) {
-    return navigate("/login");
-  }
 
-  return children;
+  return <Outlet />;
 };
 
 export default ProtectedRoute;
