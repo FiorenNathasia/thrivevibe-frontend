@@ -108,7 +108,7 @@ function Feed() {
           position: "relative",
           pt: {
             xs: 6,
-            md: "20vh",
+            md: "10vh",
           },
         }}
       >
