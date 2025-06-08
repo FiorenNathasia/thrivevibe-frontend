@@ -13,6 +13,10 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
+import Lottie from "lottie-react";
+import backgroundImage from "../../assets/background/background.jpg";
+import peopleAnimation from "../../assets/animations/people.json";
+import logoImage from "../../assets/logo/logo.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -51,95 +55,132 @@ function Login() {
 
   return (
     <>
-      {isLoading && <LinearProgress />}
-      <Container
+      <Box
         sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          height: "100vh",
-          pt: {
-            xs: 6,
-            sm: "25vh",
-          },
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "100vh",
         }}
       >
-        <Card
+        {" "}
+        {isLoading && <LinearProgress />}
+        <Container
           sx={{
-            px: 4,
-            py: 3,
-            maxWidth: 400,
-            width: "100%",
-            boxShadow: 3,
+            maxWidth: { xs: "none", sm: "100%" },
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            justifyContent: {
+              xs: "center",
+              sm: "center",
+            },
+            alignItems: "flex-start",
+            height: "100vh",
+            pt: {
+              xs: 6,
+              sm: "20vh",
+            },
           }}
         >
-          <CardContent>
-            <Box textAlign="center" mb={2}>
-              <Typography variant="h4">ThriveVibe</Typography>
-              <Typography variant="subtitle1">
-                Unleash Your Potential
-              </Typography>
-            </Box>
+          <Card
+            sx={{
+              px: 4,
+              py: 3,
+              maxWidth: 400,
+              width: "100%",
+              boxShadow: 3,
+            }}
+          >
+            <CardContent>
+              <Box textAlign="center" mb={2}>
+                <Box
+                  component="img"
+                  textAlign="center"
+                  src={logoImage}
+                  alt="ThriveVibe Logo"
+                  sx={{
+                    maxWidth: 180,
+                    height: "auto",
+                  }}
+                />
+              </Box>
 
-            <Alert sx={{ mb: 2 }}>
-              <Typography color="black">
-                Here to demo the app?{" "}
-                <Link
-                  onClick={handleSetDemoAccount}
-                  sx={{ cursor: "pointer", color: "#0da82d" }}
-                >
-                  Use this account
+              <Alert sx={{ mb: 2 }}>
+                <Typography color="black">
+                  Here to demo the app?{" "}
+                  <Link
+                    onClick={handleSetDemoAccount}
+                    sx={{ cursor: "pointer", color: "#0da82d" }}
+                  >
+                    Use this account
+                  </Link>
+                </Typography>
+              </Alert>
+
+              {error && (
+                <Alert severity="error" sx={{ mb: 2 }}>
+                  {error}
+                </Alert>
+              )}
+
+              <TextField
+                fullWidth
+                label="Email Address"
+                variant="outlined"
+                margin="normal"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+              />
+
+              <TextField
+                fullWidth
+                label="Password"
+                variant="outlined"
+                margin="normal"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+              />
+
+              <Button
+                fullWidth
+                type="submit"
+                variant="contained"
+                onClick={handleSubmit}
+                disabled={!email || !password}
+                sx={{ mt: 2, mb: 1, backgroundColor: "#5D3FD3" }}
+              >
+                Log In
+              </Button>
+
+              <Typography variant="body2" align="center">
+                Don’t have an account?{" "}
+                <Link component={RouterLink} to="/signup">
+                  Sign Up
                 </Link>
               </Typography>
-            </Alert>
-
-            {error && (
-              <Alert severity="error" sx={{ mb: 2 }}>
-                {error}
-              </Alert>
-            )}
-
-            <TextField
-              fullWidth
-              label="Email Address"
-              variant="outlined"
-              margin="normal"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
+            </CardContent>
+          </Card>{" "}
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              maxWidth: 900,
+              justifyContent: { xs: "none", sm: "right" },
+              paddingLeft: { xs: "none", sm: "40px" },
+              paddingTop: { xs: "none", sm: "30px" },
+            }}
+          >
+            {" "}
+            <Lottie
+              loop={true}
+              animationData={peopleAnimation}
+              style={{ width: 1000 }}
             />
-
-            <TextField
-              fullWidth
-              label="Password"
-              variant="outlined"
-              margin="normal"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
-            />
-
-            <Button
-              fullWidth
-              type="submit"
-              variant="contained"
-              onClick={handleSubmit}
-              disabled={!email || !password}
-              sx={{ mt: 2, mb: 1 }}
-            >
-              Log In
-            </Button>
-
-            <Typography variant="body2" align="center">
-              Don’t have an account?{" "}
-              <Link component={RouterLink} to="/signup">
-                Sign Up
-              </Link>
-            </Typography>
-          </CardContent>
-        </Card>
-      </Container>
+          </Box>
+        </Container>
+      </Box>
     </>
   );
 }
