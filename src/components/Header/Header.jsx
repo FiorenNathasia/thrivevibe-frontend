@@ -40,7 +40,7 @@ function Header() {
               src={logoImage}
               alt="ThriveVibe Logo"
               sx={{
-                height: 100,
+                height: { xs: 70, sm: 100 },
                 marginTop: "1rem",
               }}
             />
@@ -77,7 +77,11 @@ function Header() {
             >
               Feed
             </Button>
-            <Button startIcon={<LogoutIcon />} onClick={handleLogout}>
+            <Button
+              startIcon={<LogoutIcon />}
+              onClick={handleLogout}
+              sx={{ color: "#5d3fd3" }}
+            >
               Logout
             </Button>
           </Stack>
@@ -87,14 +91,16 @@ function Header() {
             <IconButton
               component={RouterLink}
               to="/"
-              color={currentPath === "/" ? "#5d3fd3" : "#757575"}
+              color={currentPath === "/" ? "#fff" : "#5d3fd3"}
             >
               <DashboardIcon />
             </IconButton>
             <IconButton
               component={RouterLink}
               to="/feed"
-              color={currentPath === "/feed" ? "#5d3fd3" : "#757575"}
+              sx={{
+                color: currentPath === "/feed" ? "#fff" : "#5d3fd3",
+              }}
             >
               <FeedIcon />
             </IconButton>

@@ -78,7 +78,7 @@ function Dashboard() {
   return (
     <>
       <Header />
-      <Container sx={{ mt: 4 }}>
+      <Container sx={{ mt: 6 }}>
         <Box
           display="flex"
           flexDirection={{ xs: "column", sm: "row" }}
@@ -87,14 +87,20 @@ function Dashboard() {
           mb={3}
           b
         >
-          <Box>
-            <Typography variant="h3">Welcome back, {user.firstName}</Typography>
-            <Typography variant="h4">My Videos</Typography>
+          <Box
+            sx={{
+              mt: { xs: 2, sm: 4 },
+              gap: { xs: 1, sm: 2 },
+              color: "#5d3fd3",
+            }}
+          >
+            <Typography variant="h4">Welcome back, {user.firstName}</Typography>
+            <Typography variant="h5">My Videos</Typography>
           </Box>
           <Button
             onClick={() => setOpenModal(true)}
             startIcon={<AddCircleIcon />}
-            sx={{ mt: { xs: 2, sm: 0 } }}
+            sx={{ mt: { xs: 2, sm: 0 }, color: "#5d3fd3" }}
           >
             Add New
           </Button>
