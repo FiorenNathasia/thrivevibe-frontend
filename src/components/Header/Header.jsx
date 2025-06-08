@@ -51,19 +51,7 @@ function Header() {
             spacing={2}
             sx={{ display: { xs: "none", sm: "flex" } }}
           >
-            <Button
-              component={RouterLink}
-              to="/"
-              startIcon={<DashboardIcon />}
-              variant={currentPath === "/" ? "contained" : "text"}
-              sx={{
-                color: currentPath === "/" ? "#fff" : "#5d3fd3",
-                backgroundColor:
-                  currentPath === "/" ? "#5d3fd3" : "transparent",
-              }}
-            >
-              Dashboard
-            </Button>
+            {" "}
             <Button
               component={RouterLink}
               to="/feed"
@@ -78,6 +66,19 @@ function Header() {
               Feed
             </Button>
             <Button
+              component={RouterLink}
+              to="/"
+              startIcon={<DashboardIcon />}
+              variant={currentPath === "/" ? "contained" : "text"}
+              sx={{
+                color: currentPath === "/" ? "#fff" : "#5d3fd3",
+                backgroundColor:
+                  currentPath === "/" ? "#5d3fd3" : "transparent",
+              }}
+            >
+              Dashboard
+            </Button>
+            <Button
               startIcon={<LogoutIcon />}
               onClick={handleLogout}
               sx={{ color: "#5d3fd3" }}
@@ -90,21 +91,21 @@ function Header() {
           <Box sx={{ display: { xs: "flex", sm: "none" } }}>
             <IconButton
               component={RouterLink}
-              to="/"
-              sx={{
-                color: currentPath === "/" ? "#616161" : "#5d3fd3",
-              }}
-            >
-              <DashboardIcon />
-            </IconButton>
-            <IconButton
-              component={RouterLink}
               to="/feed"
               sx={{
                 color: currentPath === "/feed" ? "#616162" : "#5d3fd3",
               }}
             >
               <FeedIcon />
+            </IconButton>{" "}
+            <IconButton
+              component={RouterLink}
+              to="/"
+              sx={{
+                color: currentPath === "/" ? "#616161" : "#5d3fd3",
+              }}
+            >
+              <DashboardIcon />
             </IconButton>
             <IconButton
               onClick={handleLogout}
