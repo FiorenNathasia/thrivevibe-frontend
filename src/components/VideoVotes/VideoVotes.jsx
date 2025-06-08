@@ -16,16 +16,16 @@ function VideoVotes({ upvote, downvote }) {
           <PieChart width={280} height={190}>
             <Pie
               data={[
-                { name: "Upvotes", value: upvote },
-                { name: "Downvotes", value: downvote },
+                { name: "Upvotes", value: upvote, color: "#5d3fd3" },
+                { name: "Downvotes", value: downvote, color: "#FFB677" },
               ]}
               dataKey="value"
               nameKey="name"
               innerRadius={60}
               outerRadius={80}
             >
-              <Cell fill="#82ca9d" />
-              <Cell fill="#8dd1e1" />
+              <Cell fill="#5d3fd3" />
+              <Cell fill="#FFB677" />
             </Pie>
             <Tooltip />
             <Legend

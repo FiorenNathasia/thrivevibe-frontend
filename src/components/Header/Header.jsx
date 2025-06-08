@@ -92,7 +92,7 @@ function Header() {
               component={RouterLink}
               to="/"
               sx={{
-                color: currentPath === "/" ? "#fff" : "#5d3fd3",
+                color: currentPath === "/" ? "#9e9e9e" : "#5d3fd3",
               }}
             >
               <DashboardIcon />
@@ -101,7 +101,7 @@ function Header() {
               component={RouterLink}
               to="/feed"
               sx={{
-                color: currentPath === "/feed" ? "#fff" : "#5d3fd3",
+                color: currentPath === "/feed" ? "#9e9e9e" : "#5d3fd3",
               }}
             >
               <FeedIcon />

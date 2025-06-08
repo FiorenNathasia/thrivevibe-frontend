@@ -54,7 +54,7 @@ function AddCommentPopover({ onCommentSubmit, onClose, anchorEl }) {
         <Button
           variant="contained"
           size="small"
-          sx={{ mt: 1 }}
+          sx={{ mt: 1, backgroundColor: "#5D3FD3" }}
           onClick={handleCommentSubmit}
           disabled={!commentText}
         >

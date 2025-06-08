@@ -138,7 +138,7 @@ function Feed() {
             display: "flex",
           }}
         >
-          <Box position="absolute" mt={15}>
+          <Box position="absolute" sx={{ mt: { xs: 15, sm: 12 } }}>
             <Typography>No more videos! Check back later</Typography>
           </Box>
           {videoList.map((video, index) => (
@@ -207,6 +207,7 @@ function Feed() {
           onClose={handlePopoverClose}
           anchorEl={anchorEl}
           onCommentSubmit={handleCommentSubmit}
+          sx={{ backgroundColor: "#5d3fd3" }}
         />
       </Box>
     </>
