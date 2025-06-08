@@ -53,7 +53,9 @@ function AddVideoModal({ onClose, open, onSubmit }) {
         }}
       >
         <Box display="flex" flexDirection="row" justifyContent="space-between">
-          <Typography variant="h5">New Video</Typography>
+          <Typography variant="h5" sx={{ color: "#333333" }}>
+            New Video
+          </Typography>
           <IconButton onClick={handleClose}>
             <CloseIcon />
           </IconButton>
@@ -95,6 +97,9 @@ function AddVideoModal({ onClose, open, onSubmit }) {
           onClick={handleSubmitVideo}
           size="small"
           disabled={!url || !prompt}
+          sx={{
+            backgroundColor: "#5D3FD3",
+          }}
         >
           Submit
           {isSubmitting && (

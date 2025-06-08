@@ -91,7 +91,9 @@ function Header() {
             <IconButton
               component={RouterLink}
               to="/"
-              color={currentPath === "/" ? "#fff" : "#5d3fd3"}
+              sx={{
+                color: currentPath === "/" ? "#fff" : "#5d3fd3",
+              }}
             >
               <DashboardIcon />
             </IconButton>

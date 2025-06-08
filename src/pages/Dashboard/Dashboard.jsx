@@ -89,9 +89,9 @@ function Dashboard() {
         >
           <Box
             sx={{
-              mt: { xs: 2, sm: 4 },
+              mt: { xs: 1, sm: 4 },
               gap: { xs: 1, sm: 2 },
-              color: "#5d3fd3",
+              color: "#3333333",
             }}
           >
             <Typography variant="h4">Welcome back, {user.firstName}</Typography>
