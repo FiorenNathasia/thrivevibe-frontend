@@ -41,7 +41,7 @@ function Header() {
               alt="ThriveVibe Logo"
               sx={{
                 height: 100,
-                pading: "1rem",
+                marginTop: "1rem",
               }}
             />
           </Box>
@@ -70,9 +70,9 @@ function Header() {
               startIcon={<FeedIcon />}
               variant={currentPath === "/feed" ? "contained" : "text"}
               sx={{
-                color: currentPath === "/" ? "#fff" : "#5d3fd3",
+                color: currentPath === "/feed" ? "#fff" : "#5d3fd3",
                 backgroundColor:
-                  currentPath === "/" ? "#5d3fd3" : "transparent",
+                  currentPath === "/feed" ? "#5d3fd3" : "transparent",
               }}
             >
               Feed
