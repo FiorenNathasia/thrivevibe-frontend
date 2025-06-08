@@ -40,8 +40,7 @@ function Header() {
               src={logoImage}
               alt="ThriveVibe Logo"
               sx={{
-                maxWidth: 180,
-                height: "auto",
+                height: 150,
               }}
             />
           </Box>
@@ -56,6 +55,15 @@ function Header() {
               to="/"
               startIcon={<DashboardIcon />}
               variant={currentPath === "/" ? "contained" : "text"}
+              sx={{
+                color: currentPath === "/" ? "#fff" : "#5d3fd3",
+                backgroundColor:
+                  currentPath === "/" ? "#5d3fd3" : "transparent",
+                "&:hover": {
+                  backgroundColor:
+                    currentPath === "/" ? "#5d3fd3" : "transparent",
+                },
+              }}
             >
               Dashboard
             </Button>
