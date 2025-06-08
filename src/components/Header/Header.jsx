@@ -77,13 +77,7 @@ function Header() {
             >
               Feed
             </Button>
-            <Button
-              startIcon={<LogoutIcon />}
-              onClick={handleLogout}
-              sx={{
-                color: "#5d3fd3",
-              }}
-            >
+            <Button startIcon={<LogoutIcon />} onClick={handleLogout}>
               Logout
             </Button>
           </Stack>
@@ -93,18 +87,23 @@ function Header() {
             <IconButton
               component={RouterLink}
               to="/"
-              color={currentPath === "/" ? "primary" : "default"}
+              color={currentPath === "/" ? "#5d3fd3" : "#757575"}
             >
               <DashboardIcon />
             </IconButton>
             <IconButton
               component={RouterLink}
               to="/feed"
-              color={currentPath === "/feed" ? "primary" : "default"}
+              color={currentPath === "/feed" ? "#5d3fd3" : "#757575"}
             >
               <FeedIcon />
             </IconButton>
-            <IconButton onClick={handleLogout}>
+            <IconButton
+              onClick={handleLogout}
+              sx={{
+                color: "#5d3fd3",
+              }}
+            >
               <LogoutIcon />
             </IconButton>
           </Box>
