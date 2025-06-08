@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import Lottie from "lottie-react";
 import backgroundImage from "../../assets/background/background.jpg";
-import peopleAnimation from "../../assets/animations/people.json";
+import peopleAnimation from "../../assets/animations/People.json";
 import logoImage from "../../assets/logo/logo.png";
 
 function Login() {
