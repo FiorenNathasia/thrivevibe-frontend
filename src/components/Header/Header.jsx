@@ -10,6 +10,7 @@ import FeedIcon from "@mui/icons-material/Feed";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
+import logoImage from "../../assets/logo/logo.png";
 
 function Header() {
   const location = useLocation();
@@ -22,7 +23,7 @@ function Header() {
   };
 
   return (
-    <Box sx={{ borderBottom: 1 }}>
+    <Box sx={{ backgroundColor: "#BFA2DB" }}>
       <Container>
         <Box
           sx={{
@@ -32,8 +33,18 @@ function Header() {
             py: 1,
           }}
         >
-          <Typography>Logo</Typography>
-
+          <Box textAlign="center" mb={2}>
+            <Box
+              component="img"
+              textAlign="center"
+              src={logoImage}
+              alt="ThriveVibe Logo"
+              sx={{
+                maxWidth: 180,
+                height: "auto",
+              }}
+            />
+          </Box>
           {/* Desktop: show full buttons */}
           <Stack
             direction="row"
