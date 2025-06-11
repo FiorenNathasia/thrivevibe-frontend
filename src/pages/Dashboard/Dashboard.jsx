@@ -16,11 +16,13 @@ import {
 import { Masonry } from "@mui/lab";
 import Header from "../../components/Header/Header";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Dashboard() {
   const [videoList, setVideoList] = useState([]);
   const [user, setUser] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchVideoList = async () => {
@@ -73,11 +75,28 @@ function Dashboard() {
     setOpenModal(false);
   };
 
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    const token = localStorage.getItem("accessToken");
+    try {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/videos/${id}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      await fetchVideoList();
+    } catch (error) {
+      console.log(error);
+    }
+    setIsDeleting(false);
+  };
+
   if (isLoading) return <LinearProgress />;
 
   return (
     <>
       <Header />
+      {isLoading && <LinearProgress />}
       <Container sx={{ mt: 6 }}>
         <Box
           display="flex"
@@ -128,6 +147,20 @@ function Dashboard() {
                     </Typography>
                   </CardContent>
                 </Card>
+                <IconButton
+                  variant="contained"
+                  color="neutral"
+                  sx={{ mr: "auto" }}
+                >
+                  <DeleteIcon
+                    variant="contained"
+                    onClick={handleDelete}
+                    disabled={isDeleting}
+                    sx={{ fontSize: "1.5rem", color: "#919192" }}
+                  >
+                    {isDeleting ? "Deleting..." : "Delete"}
+                  </DeleteIcon>
+                </IconButton>
               </CardActionArea>
             );
           })}

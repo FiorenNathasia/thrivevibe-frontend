@@ -97,6 +97,7 @@ function Feed() {
   return (
     <>
       <Header />
+      {isLoading && <LinearProgress />}
       <Box
         sx={{
           width: "100%",

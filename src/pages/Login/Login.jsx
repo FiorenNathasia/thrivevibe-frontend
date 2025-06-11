@@ -63,7 +63,6 @@ function Login() {
           minHeight: "100vh",
         }}
       >
-        {" "}
         {isLoading && <LinearProgress />}
         <Container
           sx={{
