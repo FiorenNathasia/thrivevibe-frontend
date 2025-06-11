@@ -76,7 +76,7 @@ function Dashboard() {
     setOpenModal(false);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (id) => {
     setIsDeleting(true);
     const token = localStorage.getItem("accessToken");
     try {
@@ -109,13 +109,15 @@ function Dashboard() {
         >
           <Box
             sx={{
-              mt: { xs: 1, sm: 4 },
-              gap: { xs: 1, sm: 2 },
+              mt: { xs: 1, sm: 1 },
+              gap: { xs: 1, sm: 3 },
               color: "#3333333",
             }}
           >
             <Typography variant="h4">Welcome back, {user.firstName}</Typography>
-            <Typography variant="h5">My Videos</Typography>
+            <Typography variant="h5" sx={{ mt: { xs: 1, sm: 2 } }}>
+              My Videos
+            </Typography>
           </Box>
           <Button
             onClick={() => setOpenModal(true)}
@@ -143,25 +145,30 @@ function Dashboard() {
                   />
                   <CardContent>
                     <Typography>{video.prompt}</Typography>
-                    <Typography>
-                      {totalVotes ? `${totalVotes} votes` : "No votes"}
-                    </Typography>
+                    <Box sx={{ display: "flex", flexDirection: "row" }}>
+                      <Typography>
+                        {totalVotes ? `${totalVotes} votes` : "No votes"}
+                      </Typography>
+                      <IconButton
+                        variant="contained"
+                        color="neutral"
+                        sx={{ ml: "auto" }}
+                      >
+                        <DeleteIcon
+                          variant="contained"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleDelete(video.id);
+                          }}
+                          disabled={isDeleting}
+                          sx={{ fontSize: "1.5rem", color: "#919192" }}
+                        >
+                          {isDeleting ? "Deleting..." : "Delete"}
+                        </DeleteIcon>
+                      </IconButton>
+                    </Box>
                   </CardContent>
                 </Card>
-                <IconButton
-                  variant="contained"
-                  color="neutral"
-                  sx={{ mr: "auto" }}
-                >
-                  <DeleteIcon
-                    variant="contained"
-                    onClick={handleDelete}
-                    disabled={isDeleting}
-                    sx={{ fontSize: "1.5rem", color: "#919192" }}
-                  >
-                    {isDeleting ? "Deleting..." : "Delete"}
-                  </DeleteIcon>
-                </IconButton>
               </CardActionArea>
             );
           })}

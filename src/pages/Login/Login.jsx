@@ -155,23 +155,22 @@ function Login() {
               </Button>
 
               <Typography variant="body2" align="center">
-                Don’t have an account?{" "}
+                Don’t have an account?
                 <Link component={RouterLink} to="/signup">
                   Sign Up
                 </Link>
               </Typography>
             </CardContent>
-          </Card>{" "}
+          </Card>
           <Box
             sx={{
-              display: { xs: "none", sm: "flex" },
+              display: { xs: "none", md: "flex" },
               maxWidth: 900,
-              justifyContent: { xs: "none", sm: "right" },
-              paddingLeft: { xs: "none", sm: "40px" },
-              paddingTop: { xs: "none", sm: "30px" },
+              justifyContent: { xs: "none", md: "right" },
+              paddingLeft: { xs: "none", md: "40px" },
+              paddingTop: { xs: "none", md: "30px" },
             }}
           >
-            {" "}
             <Lottie
               loop={true}
               animationData={peopleAnimation}

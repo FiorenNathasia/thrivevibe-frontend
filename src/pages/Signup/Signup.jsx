@@ -169,11 +169,11 @@ function Signup() {
           </Card>
           <Box
             sx={{
-              display: { xs: "none", sm: "flex" },
+              display: { xs: "none", md: "flex" },
               maxWidth: 900,
-              justifyContent: { xs: "none", sm: "right" },
-              paddingLeft: { xs: "none", sm: "40px" },
-              paddingTop: { xs: "none", sm: "60px" },
+              justifyContent: { xs: "none", md: "right" },
+              paddingLeft: { xs: "none", md: "40px" },
+              paddingTop: { xs: "none", md: "60px" },
             }}
           >
             {" "}

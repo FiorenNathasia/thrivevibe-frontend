@@ -103,7 +103,10 @@ function AddVideoModal({ onClose, open, onSubmit }) {
         >
           Submit
           {isSubmitting && (
-            <CircularProgress sx={{ marginLeft: 1 }} size="1rem" />
+            <CircularProgress
+              sx={{ marginLeft: 1, color: "#FFB677" }}
+              size="1rem"
+            />
           )}
         </Button>
       </Box>
