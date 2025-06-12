@@ -9,7 +9,7 @@ import {
   Container,
   Alert,
   Link,
-  LinearProgress,
+  CircularProgress,
   Card,
   CardContent,
 } from "@mui/material";
@@ -22,12 +22,12 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLogIn, setIsLogIn] = useState(false);
   const [error, setError] = useState(null);
 
   const handleSubmit = async () => {
     try {
-      setIsLoading(true);
+      setIsLogIn(true);
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/login`,
         {
@@ -44,7 +44,7 @@ function Login() {
       setError(errorMessage);
       console.error(error);
     } finally {
-      setIsLoading(false);
+      setIsLogIn(false);
     }
   };
 
@@ -63,7 +63,6 @@ function Login() {
           minHeight: "100vh",
         }}
       >
-        {isLoading && <LinearProgress />}
         <Container
           sx={{
             maxWidth: { xs: "none", sm: "100%" },
@@ -151,7 +150,21 @@ function Login() {
                 disabled={!email || !password}
                 sx={{ mt: 2, mb: 1, backgroundColor: "#5D3FD3" }}
               >
-                Log In
+                {isLogIn ? (
+                  <>
+                    Logging In...
+                    <CircularProgress
+                      size={20}
+                      sx={{
+                        color: "#FFB677",
+                        position: "absolute",
+                        right: 16,
+                      }}
+                    />
+                  </>
+                ) : (
+                  "LOGIN"
+                )}
               </Button>
 
               <Typography variant="body2" align="center">

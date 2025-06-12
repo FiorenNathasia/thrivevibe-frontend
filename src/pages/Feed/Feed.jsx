@@ -97,7 +97,13 @@ function Feed() {
   return (
     <>
       <Header />
-      {isLoading && <LinearProgress />}
+      {isLoading && (
+        <LinearProgress
+          sx={{
+            backgroundColor: "#FFB677",
+          }}
+        />
+      )}
       <Box
         sx={{
           width: "100%",

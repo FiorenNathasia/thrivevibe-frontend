@@ -97,7 +97,13 @@ function Dashboard() {
   return (
     <>
       <Header />
-      {isLoading && <LinearProgress />}
+      {isLoading && (
+        <LinearProgress
+          sx={{
+            backgroundColor: "#FFB677",
+          }}
+        />
+      )}
       <Container sx={{ mt: 6 }}>
         <Box
           display="flex"

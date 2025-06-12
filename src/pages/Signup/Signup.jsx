@@ -25,7 +25,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
 
   const handleSubmit = async () => {
     const user = {
@@ -35,7 +35,7 @@ function Signup() {
       password,
     };
     try {
-      setIsLoading(true);
+      setIsSignUp(true);
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/signup`,
         user
@@ -48,7 +48,7 @@ function Signup() {
       setError(errorMessage);
       console.log(error);
     }
-    setIsLoading(false);
+    setIsSignUp(false);
   };
 
   return (
@@ -61,8 +61,6 @@ function Signup() {
           minHeight: "100vh",
         }}
       >
-        {" "}
-        {isLoading && <LinearProgress />}
         <Container
           sx={{
             maxWidth: { xs: "none", sm: "100%" },
@@ -156,7 +154,21 @@ function Signup() {
                 disabled={!email || !password}
                 sx={{ mt: 2, mb: 1, backgroundColor: "#5D3FD3" }}
               >
-                Sign Up
+                {isSignUp ? (
+                  <>
+                    Signing up...
+                    <CircularProgress
+                      size={20}
+                      sx={{
+                        color: "#FFB677",
+                        position: "absolute",
+                        right: 16,
+                      }}
+                    />
+                  </>
+                ) : (
+                  "SIGN UP"
+                )}
               </Button>
 
               <Typography variant="body2" align="center">
@@ -187,93 +199,6 @@ function Signup() {
       </Box>
     </>
   );
-
-  //   <>
-  //     {isLoading && <Loader />}
-  //     <Container maxWidth="xs">
-  //       <Box
-  //         sx={{
-  //           pt: 8,
-  //           display: "flex",
-  //           flexDirection: "column",
-  //           alignItems: "center",
-  //         }}
-  //       >
-  //         <Typography variant="h3" mb={5}>
-  //           Sign Up
-  //         </Typography>
-
-  //         {error && (
-  //           <Alert
-  //             severity="error"
-  //             sx={{
-  //               width: "100%",
-  //               mt: 2,
-  //               mb: 4,
-  //             }}
-  //           >
-  //             {error}
-  //           </Alert>
-  //         )}
-
-  //         <Stack direction="column" gap={2} width="100%" mt={2} mb={2}>
-  //           <TextField
-  //             label="First Name"
-  //             variant="outlined"
-  //             fullWidth
-  //             value={firstName}
-  //             onChange={(e) => setFirstName(e.target.value)}
-  //           />
-
-  //           <TextField
-  //             label="Last Name"
-  //             variant="outlined"
-  //             fullWidth
-  //             value={lastName}
-  //             onChange={(e) => setLastName(e.target.value)}
-  //           />
-
-  //           <TextField
-  //             label="Email Address"
-  //             type="email"
-  //             variant="outlined"
-  //             fullWidth
-  //             value={email}
-  //             onChange={(e) => setEmail(e.target.value)}
-  //           />
-
-  //           <TextField
-  //             label="Password"
-  //             type="password"
-  //             variant="outlined"
-  //             fullWidth
-  //             value={password}
-  //             onChange={(e) => setPassword(e.target.value)}
-  //           />
-
-  //           <Button
-  //             type="submit"
-  //             fullWidth
-  //             variant="contained"
-  //             onClick={handleSubmit}
-  //             sx={{ py: 1.5 }}
-  //             disabled={
-  //               isLoading || !email || !password || !firstName || !lastName
-  //             }
-  //           >
-  //             Sign Up
-  //           </Button>
-  //         </Stack>
-  //         <Typography variant="body2" align="center">
-  //           Already have an account?{" "}
-  //           <Link component={RouterLink} to="/login">
-  //             Log in
-  //           </Link>
-  //         </Typography>
-  //       </Box>
-  //     </Container>
-  //   </>
-  // );
 }
 
 export default Signup;
