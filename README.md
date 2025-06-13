@@ -1,8 +1,39 @@
-# React + Vite
+# ThriveVibe 🎥✨ (Fullstack Peer Feedback & Video Sharing App)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📽️ Demo Videos
 
-Currently, two official plugins are available:
+### 💻 Desktop View
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Desktop Demo](public/gif/desktop.gif)
+
+### 📱 Mobile View
+
+![Mobile Demo](public/gif/mobile.gif)
+
+---
+
+## 🧠 Overview
+
+**ThriveVibe** is an interactive platform designed to empower content creators by connecting them with a community of peers for real-time feedback. With an intuitive swipe interface and personalized dashboard, creators can easily gather votes and comments to improve their video content and engagement.
+
+---
+
+## 🚀 Features
+
+-🤝 **Peer Connections** Network with other content creators to share and receive feedback.
+
+-🔄 **Swipe Interface** Effortlessly swipe through videos to vote and leave comments.
+
+-💬 **Real-Time Feedback** Engage in comment-based discussions on video content.
+
+-📊 **Personal Dashboard** View feedback results and comments related to your uploaded videos in one place.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React (with responsive design)
+- **Backend:** Express.js
+- **Database:** PostgreSQL
+
+---
