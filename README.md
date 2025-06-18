@@ -1,6 +1,6 @@
 # ThriveVibe 🎥✨ (Fullstack Peer Feedback & Video Sharing App)
 
-## 📽️ Demo Videos
+**Project's Backend:** https://github.com/FiorenNathasia/thrivevibe-backend
 
 ### 💻 Desktop View
 
@@ -14,18 +14,26 @@
 
 ## 🧠 Overview
 
-**ThriveVibe** is an interactive platform designed to empower content creators by connecting them with a community of peers for real-time feedback. With an intuitive swipe interface and personalized dashboard, creators can easily gather votes and comments to improve their video content and engagement.
+**ThriveVibe** is a platform designed to help early-stage content creators gather targeted feedback on their videos. By submitting videos with specific prompts, creators receive structured feedback through votes and comments, all visualized in a centralized dashboard to improve their content efficiently.
+
+---
+
+## 🔍 How is it done?
+
+- Creators upload videos alongside tailored feedback prompts
+
+- Reviewers engage with videos via a smooth, swipe based interface (modeled after Tinder) to easily submit votes on targeted prompts.
+
+- Votes and optional comments are shown in a centralized dashboard for creators
+
+- Responsive design ensures smooth experience on both mobile and desktop devices
 
 ---
 
 ## 🚀 Features
 
 -🤝 **Peer Connections** Network with other content creators to share and receive feedback.
-
 -🔄 **Swipe Interface** Effortlessly swipe through videos to vote and leave comments.
-
--💬 **Real-Time Feedback** Engage in comment-based discussions on video content.
-
 -📊 **Personal Dashboard** View feedback results and comments related to your uploaded videos in one place.
 
 ---
@@ -35,5 +43,6 @@
 - **Frontend:** React (with responsive design)
 - **Backend:** Express.js
 - **Database:** PostgreSQL
+- **Authentication:** JWT (OAuth)
 
 ---
