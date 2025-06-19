@@ -8,7 +8,7 @@
 
 ### 📱 Mobile View
 
-![Mobile Demo](public/gif/mobile.gif)
+<img src="public/gif/mobile.gif" alt="Mobile Demo" width="300" />
 
 ---
 
