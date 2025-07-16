@@ -151,7 +151,7 @@ function VideoPage() {
                   marginBottom={2}
                 >
                   <Box display="flex" alignItems="center" gap={1}>
-                    <Typography variant="h5">Summary</Typography>
+                    <Typography variant="h5">AI Summary</Typography>
                     <AutoAwesomeIcon sx={{ fontSize: 30, color: "#5d3fd3" }} />
                   </Box>
                   <CircularProgress
@@ -169,7 +169,7 @@ function VideoPage() {
                     marginBottom={2}
                   >
                     <Box display="flex" alignItems="center" gap={1}>
-                      <Typography variant="h5">Summary</Typography>
+                      <Typography variant="h5">AI Summary</Typography>
                       <AutoAwesomeIcon
                         sx={{ fontSize: 30, color: "#5d3fd3" }}
                       />
@@ -210,55 +210,58 @@ function VideoPage() {
             </Box>
           </Box>
         </Box>
-        {isSummaryLoading ? (
-          <Box
-            boxShadow={2}
-            padding={2}
-            width={{ sm: 700, xs: "100%" }}
-            borderRadius={3}
-          >
-            <Box display="flex" alignItems="center" gap={1}>
-              <Typography variant="h5">Summary</Typography>
-              <AutoAwesomeIcon sx={{ fontSize: 30, color: "#5d3fd3" }} />
-            </Box>
-
-            <CircularProgress
-              sx={{ color: "#FFB677", margin: 3 }}
-              size="3rem"
-            />
-          </Box>
-        ) : (
-          summary && (
+        {!isMobile &&
+          (isSummaryLoading ? (
             <Box
               boxShadow={2}
-              padding={2.5}
+              padding={2}
               width={{ sm: 700, xs: "100%" }}
               borderRadius={3}
+              marginBottom={2}
             >
               <Box display="flex" alignItems="center" gap={1}>
-                <Typography variant="h5">Summary</Typography>
+                <Typography variant="h5">AI Summary</Typography>
                 <AutoAwesomeIcon sx={{ fontSize: 30, color: "#5d3fd3" }} />
               </Box>
-              <Box display="flex" flexDirection="column" gap={1}>
-                <Summary summary={summary} />
-                <Box display="flex" alignItems="center">
-                  <Box flexGrow={2} />
-                  <Typography variant="caption" sx={{ fontStyle: "italic" }}>
-                    Last updated:
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{ fontStyle: "italic", mr: 1.5 }}
-                  >
-                    {updatedAt
-                      ? new Date(updatedAt).toLocaleDateString()
-                      : "N/A"}
-                  </Typography>
+
+              <CircularProgress
+                sx={{ color: "#FFB677", margin: 3 }}
+                size="3rem"
+              />
+            </Box>
+          ) : (
+            summary && (
+              <Box
+                boxShadow={2}
+                padding={2.5}
+                width={{ sm: 700, xs: "100%" }}
+                borderRadius={3}
+                marginBottom={2}
+              >
+                <Box display="flex" alignItems="center" gap={1}>
+                  <Typography variant="h5">AI Summary</Typography>
+                  <AutoAwesomeIcon sx={{ fontSize: 30, color: "#5d3fd3" }} />
+                </Box>
+                <Box display="flex" flexDirection="column" gap={1}>
+                  <Summary summary={summary} />
+                  <Box display="flex" alignItems="center">
+                    <Box flexGrow={2} />
+                    <Typography variant="caption" sx={{ fontStyle: "italic" }}>
+                      Last updated:
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ fontStyle: "italic", mr: 1.5 }}
+                    >
+                      {updatedAt
+                        ? new Date(updatedAt).toLocaleDateString()
+                        : "N/A"}
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
-            </Box>
-          )
-        )}
+            )
+          ))}
 
         <Box
           boxShadow={2}
