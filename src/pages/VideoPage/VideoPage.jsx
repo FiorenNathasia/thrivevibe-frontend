@@ -6,6 +6,7 @@ import {
   useTheme,
   useMediaQuery,
   LinearProgress,
+  CircularProgress,
 } from "@mui/material";
 import Header from "../../components/Header/Header";
 import axios from "axios";
@@ -13,13 +14,18 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import VideoVotes from "../../components/VideoVotes/VideoVotes";
 import VideoComments from "../../components/VideoComments/VideoComments";
+import Summary from "../../components/Summary/Summary";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 
 function VideoPage() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [video, setVideo] = useState(null);
   const [comments, setComments] = useState([]);
+  const [summary, setSummary] = useState("");
+  const [updatedAt, setUpdatedAt] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSummaryLoading, setIsSummmaryLoading] = useState(true);
   const { id } = useParams();
 
   const fetchData = async () => {
@@ -41,6 +47,7 @@ function VideoPage() {
           },
         }
       );
+
       setVideo(videoResponse.data.data);
       setComments(commentsResponse.data);
       setIsLoading(false);
@@ -49,8 +56,29 @@ function VideoPage() {
     }
   };
 
+  const fetchSummary = async () => {
+    const token = localStorage.getItem("accessToken");
+    try {
+      setIsSummmaryLoading(true);
+      const summaryResponse = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/videos/${id}/summary`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      setSummary(summaryResponse.data.data);
+      setUpdatedAt(summaryResponse.data.updated_at);
+      setIsSummmaryLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchData();
+    fetchSummary();
   }, []);
 
   if (isLoading) return <LinearProgress />;
@@ -120,12 +148,64 @@ function VideoPage() {
             </Box>
           </Box>
         </Box>
+        {isSummaryLoading ? (
+          <Box
+            boxShadow={2}
+            padding={2}
+            width={{ sm: 700, xs: "100%" }}
+            borderRadius={3}
+          >
+            <Box display="flex" alignItems="center" gap={1}>
+              <Typography variant="h5">Summary</Typography>
+              <AutoAwesomeIcon sx={{ fontSize: 10, color: "#5d3fd3" }} />
+            </Box>
+
+            <CircularProgress
+              sx={{ color: "#FFB677", margin: 3 }}
+              size="3rem"
+            />
+          </Box>
+        ) : (
+          summary && (
+            <Box
+              boxShadow={2}
+              padding={2.5}
+              width={{ sm: 700, xs: "100%" }}
+              borderRadius={3}
+            >
+              <Box display="flex" alignItems="center" gap={1}>
+                <Typography variant="h5">Summary</Typography>
+                <AutoAwesomeIcon sx={{ fontSize: 30, color: "#5d3fd3" }} />
+              </Box>
+              <Box display="flex" flexDirection="column" gap={1}>
+                <Summary summary={summary} />
+                <Box display="flex" alignItems="center">
+                  <Box flexGrow={2} />
+                  <Typography variant="caption" sx={{ fontStyle: "italic" }}>
+                    Last updated:
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{ fontStyle: "italic", mr: 1.5 }}
+                  >
+                    {updatedAt
+                      ? new Date(updatedAt).toLocaleDateString()
+                      : "N/A"}
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+          )
+        )}
 
         <Box
           boxShadow={2}
           padding={2}
           width={{ sm: 700, xs: "100%" }}
           borderRadius={3}
+          maxHeight={300}
+          overflow="auto"
+          margin={2}
         >
           <VideoComments comments={comments} />
         </Box>

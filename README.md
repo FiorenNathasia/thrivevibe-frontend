@@ -4,11 +4,11 @@
 
 ### 💻 Desktop View
 
-![Desktop Demo](public/gif/desktop.gif)
+![Desktop Demo](src/assets/gif/desktop.gif)
 
 ### 📱 Mobile View
 
-<img src="public/gif/mobile.gif" alt="Mobile Demo" width="300" />
+<img src="src/assets/gif/mobile.gif" alt="Mobile Demo" width="300" />
 
 ---
 
