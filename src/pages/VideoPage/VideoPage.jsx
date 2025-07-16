@@ -68,6 +68,10 @@ function VideoPage() {
           },
         }
       );
+      console.log(
+        "Summary request URL:",
+        `${import.meta.env.VITE_API_URL}/api/videos/${id}/summary`
+      );
       setSummary(summaryResponse.data.data);
       setUpdatedAt(summaryResponse.data.updated_at);
       setIsSummmaryLoading(false);
@@ -96,6 +100,7 @@ function VideoPage() {
         }}
       >
         {isMobile && <ReactPlayer url={video.url} width="100%" />}
+
         <Box
           display="flex"
           flexDirection="row"
@@ -136,6 +141,63 @@ function VideoPage() {
               <Typography variant="h5">{video.prompt}</Typography>
             </Box>
 
+            {isMobile &&
+              (isSummaryLoading ? (
+                <Box
+                  boxShadow={2}
+                  padding={2}
+                  width="100%"
+                  borderRadius={3}
+                  marginBottom={2}
+                >
+                  <Box display="flex" alignItems="center" gap={1}>
+                    <Typography variant="h5">Summary</Typography>
+                    <AutoAwesomeIcon sx={{ fontSize: 30, color: "#5d3fd3" }} />
+                  </Box>
+                  <CircularProgress
+                    sx={{ color: "#FFB677", margin: 3 }}
+                    size="3rem"
+                  />
+                </Box>
+              ) : (
+                summary && (
+                  <Box
+                    boxShadow={2}
+                    padding={2.5}
+                    width="100%"
+                    borderRadius={3}
+                    marginBottom={2}
+                  >
+                    <Box display="flex" alignItems="center" gap={1}>
+                      <Typography variant="h5">Summary</Typography>
+                      <AutoAwesomeIcon
+                        sx={{ fontSize: 30, color: "#5d3fd3" }}
+                      />
+                    </Box>
+                    <Box display="flex" flexDirection="column" gap={1}>
+                      <Summary summary={summary} />
+                      <Box display="flex" alignItems="center">
+                        <Box flexGrow={2} />
+                        <Typography
+                          variant="caption"
+                          sx={{ fontStyle: "italic" }}
+                        >
+                          Last updated:
+                        </Typography>
+                        <Typography
+                          variant="caption"
+                          sx={{ fontStyle: "italic", mr: 1.5 }}
+                        >
+                          {updatedAt
+                            ? new Date(updatedAt).toLocaleDateString()
+                            : "N/A"}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </Box>
+                )
+              ))}
+
             <Box
               sx={{
                 padding: 2,
@@ -157,7 +219,7 @@ function VideoPage() {
           >
             <Box display="flex" alignItems="center" gap={1}>
               <Typography variant="h5">Summary</Typography>
-              <AutoAwesomeIcon sx={{ fontSize: 10, color: "#5d3fd3" }} />
+              <AutoAwesomeIcon sx={{ fontSize: 30, color: "#5d3fd3" }} />
             </Box>
 
             <CircularProgress
