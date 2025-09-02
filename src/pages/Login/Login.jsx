@@ -75,8 +75,8 @@ function Login() {
             alignItems: "flex-start",
             height: "100vh",
             pt: {
-              xs: 6,
-              sm: "20vh",
+              xs: 4,
+              sm: 8.5,
             },
           }}
         >
@@ -168,7 +168,7 @@ function Login() {
               </Button>
 
               <Typography variant="body2" align="center">
-                Don’t have an account?
+                Don’t have an account?{" "}
                 <Link component={RouterLink} to="/signup">
                   Sign Up
                 </Link>

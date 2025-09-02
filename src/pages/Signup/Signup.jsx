@@ -71,11 +71,12 @@ function Signup() {
               sm: "center",
             },
             alignItems: "flex-start",
-            height: "100vh",
+
             pt: {
               xs: 6,
-              sm: "16vh",
+              sm: 4,
             },
+            pb: { xs: 6, sm: 1 },
           }}
         >
           <Card
